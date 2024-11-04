@@ -23,7 +23,7 @@ jobs:
       - name: Wait for Grafana Deployment
         run: kubectl rollout status deployment/grafana --namespace=grafana
       - name: Get Grafana Deployment Logs
-        run: kubectl logs deployment/grafana --namespace=grafana --tail=10 --selector="level=warn"
+        run: kubectl logs deployment/grafana --namespace=grafana --tail=10
       - name: Check Grafana Namespace
         run: kubectl get all --namespace=grafana
       - name: Check service API health
