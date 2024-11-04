@@ -29,9 +29,9 @@ jobs:
       - name: Check service API health
         run: | 
           # Get nodePort
-          nodePort=$(kubectl get service -n grafana -o go-template --template='{{range .items}}{{range .spec.ports}}{{if .nodePort}}{{.nodePort}}{{"\\n"}}{{end}}{{end}}{{end}}')
+          nodePort=$(kubectl get service -n grafana -o go-template --template='{{range .items}}{{range .spec.ports}}{{if .nodePort}}{{.nodePort}}{{end}}{{end}}{{end}}')
           echo "nodePort is: ${nodePort}"
           # Check Grafana Health API Endpoint
-          curl "admin:admin@localhost:${nodePort}/api/health"
+          curl "http://admin:admin@localhost:${nodePort}/api/health"
           # Check Grafana Organization API Endpoint
-          curl "admin:admin@localhost:${nodePort}/api/org"
+          curl "http://admin:admin@localhost:${nodePort}/api/org"
