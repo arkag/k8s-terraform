@@ -22,5 +22,9 @@ jobs:
         run: terraform init
       - name: Terraform Apply
         run: terraform apply --auto-approve
+      - name: Wait for Grafana Deployment
+        run: kubectl rollout status deployment/grafana --namespace=grafana
+      - name: Get Grafana Deploymetn Logs
+        run: kubectl logs deployment/grafana --namespace=grafana
       - name: Check Grafana Namespace
         run: kubectl get all --namespace=grafana
