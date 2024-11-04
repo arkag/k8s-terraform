@@ -10,5 +10,11 @@ jobs:
         uses: helm/kind-action@v1
         with:
           cluster_name: "default"
-      - name: Confirm cluster-info
-        run: kubectl cluster-info --context kind-default
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+      - name: Get kubeconfig
+        run: kind get kubeconfig > kubeconfig
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
