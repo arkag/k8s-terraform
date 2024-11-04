@@ -27,7 +27,7 @@ jobs:
       - name: Check Grafana Namespace
         run: kubectl get all --namespace=grafana
       - name: Create port forward to check real service health
-        run: kubectl port-forward --namespace=grafana --address= service/grafana 30000:3000 &
+        run: kubectl port-forward --namespace=grafana --address=localhost service/grafana 30000:3000 &
       - name: Check real service health
         run: "curl localhost:30000"
       - name: End port forward
