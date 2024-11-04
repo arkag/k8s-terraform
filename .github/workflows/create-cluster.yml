@@ -15,7 +15,7 @@ jobs:
       - name: Get kubeconfig
         run: kind get kubeconfig > kubeconfig
       - name: What dir am I in??
-        run: pwd && ls
+        run: cd .. && pwd && ls
       - name: Terraform Init
         run: terraform init
       - name: Terraform Apply
