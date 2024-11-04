@@ -6,6 +6,8 @@ jobs:
   create-cluster:
     runs-on: ubuntu-latest
     steps:
+      - name: Get repo
+        uses: actions/checkout@v4
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1
         with:
@@ -15,7 +17,7 @@ jobs:
       - name: Get kubeconfig
         run: kind get kubeconfig > kubeconfig
       - name: What dir am I in??
-        run: cd .. && pwd && ls
+        run: pwd && ls
       - name: Terraform Init
         run: terraform init
       - name: Terraform Apply
