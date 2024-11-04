@@ -28,7 +28,6 @@ jobs:
         run: kubectl get all --namespace=grafana
       - name: Check service API health
         run: | 
-          kubectl port-forward --namespace=grafana --address=localhost service/grafana 3000:3000 &
           # Check Grafana Health API Endpoint
           curl http://admin:admin@localhost:3000/api/health
           # Check Grafana Organization API Endpoint
