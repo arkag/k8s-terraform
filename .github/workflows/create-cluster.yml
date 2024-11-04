@@ -23,7 +23,7 @@ jobs:
       - name: Wait for Grafana Deployment
         run: kubectl rollout status deployment/grafana --namespace=grafana
       - name: Get Grafana Deployment Logs
-        run: kubectl logs deployment/grafana --namespace=grafana --tail=10
+        run: kubectl logs --namespace=grafana --selector="app=grafana"
       - name: Check Grafana Namespace
         run: kubectl get all --namespace=grafana
       - name: Check service API health
@@ -32,5 +32,3 @@ jobs:
           curl http://admin:admin@localhost:3000/api/health
           # Check Grafana Organization API Endpoint
           curl http://admin:admin@localhost:3000/api/org
-          # End port forward
-          kill %1
